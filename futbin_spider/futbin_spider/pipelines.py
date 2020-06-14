@@ -12,7 +12,7 @@ import pandas as pd
 class CsvWriterPipeline(object):
 
     def open_spider(self, spider):
-        self.file_path = 'C:\\Repos\\Futbin\\player_info.csv'
+        self.file_path = f'../data/player_urls.csv'
         self.items = []
         self.colnames = []
         self.count = 0
@@ -33,7 +33,6 @@ class CsvWriterPipeline(object):
                 self.colnames.append(key)
         self.items.append(item)
         if self.count % 100 == 0:
-            self.count = 0
             self.close_spider(spider)
         return item
     
@@ -54,7 +53,7 @@ class DfPipeline(object):
             
     def close_spider(self, spider):
         print('{} items processed. Writing to file.'.format(self.count))
-        self.df.to_csv('C:\\Repos\\Futbin\\player_prices.csv')
+        self.df.to_csv('C:\\Repos\\fut-stats\\player_prices.csv')
         
 class NoPipeline(object):
     
